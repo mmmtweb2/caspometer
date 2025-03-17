@@ -15,9 +15,6 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json());
 
 // חיבור למסד הנתונים
 mongoose.connect(process.env.MONGO_URI)
@@ -42,6 +39,7 @@ app.listen(PORT, () => {
     logger.info(`שרת רץ במצב ${process.env.NODE_ENV} על פורט ${PORT}`);
 });
 
+// הגדרות CORS
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production'
         ? ['https://your-frontend-domain.vercel.app', 'http://localhost:3000']
@@ -50,4 +48,6 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization']
 };
 
+// Middleware
 app.use(cors(corsOptions));
+app.use(express.json());
