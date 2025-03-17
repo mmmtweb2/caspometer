@@ -1,0 +1,15 @@
+# שרת (server)
+server/node_modules
+server/.env
+server/logs
+
+# קליינט (React)
+caspometer/node_modules
+caspometer/.env
+caspometer/.env.local
+caspometer/build
+caspometer/.DS_Store
+
+# כללי
+.DS_Store
+.vscode
