@@ -41,3 +41,13 @@ app.use(errorHandler);
 app.listen(PORT, () => {
     logger.info(`שרת רץ במצב ${process.env.NODE_ENV} על פורט ${PORT}`);
 });
+
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'production'
+        ? ['https://your-frontend-domain.vercel.app', 'http://localhost:3000']
+        : 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
