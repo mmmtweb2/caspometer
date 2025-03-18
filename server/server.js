@@ -21,7 +21,7 @@ const corsOptions = {
     credentials: true
 };
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // ✅ תמיכה ב-Preflight Requests
+// הסרתי את שורת app.options כדי למנוע כפילות
 
 app.use(express.json());
 
@@ -30,7 +30,8 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => logger.info('MongoDB חיבור למסד הנתונים הצליח'))
     .catch(err => {
         logger.error('שגיאה בהתחברות למסד הנתונים', { error: err.message });
-        process.exit(1);
+        // אל תסיים את התהליך, פשוט לוגג את השגיאה
+        // process.exit(1); 
     });
 
 // ✅ ווידוא שכל הנתיבים מוגדרים עם `/api/`
